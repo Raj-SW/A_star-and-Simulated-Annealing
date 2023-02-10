@@ -5,7 +5,7 @@ from SimulatedAnnealing.GenerateNeighbourPath import generateNeighbourPath
 from SimulatedAnnealing.CalculateAcceptanceProbability import calculateAcceptanceProbability
 class SA():
     def Traversal(graph,startNode,endNode):
-        currentTemp=10000
+        currentTemp=1000
         FINAL_TEMP=0.1
         iterations=0
         alpha=0.1
