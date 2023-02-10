@@ -114,4 +114,3 @@ class SimulatedAnnealing():
     # and value is returned
     def calculateCost(graph,solution,pointer,start):
         return graph[start][solution[pointer]]
-

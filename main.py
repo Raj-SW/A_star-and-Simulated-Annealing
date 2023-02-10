@@ -1,9 +1,10 @@
 import random
-from SimulatedAnnealing import SimulatedAnnealing
+# from Simulated_Annealing.SimulatedAnnealing2 import SimulatedAnnealing2
+#from Simulated_Annealing.SimulatedAnnealing import SimulatedAnnealing
 from graph import getGraphData
 from A_Star.Node import Node
 from A_Star.A_Star import A_star_Search
-
+from SimulatedAnnealing.SimulatedAnnealing import SA
 def main():
     graphData=getGraphData()
     nodeCount=0
@@ -33,17 +34,20 @@ def main():
     # print()
     # print("Cost for path -> ",solution1[1].fN)
     # print()
+    # print("**********************************")
+    # print()
     print("Using Simulated Annealing Algorithm")
-    print()
-    print("Start node is Node Number ->",start_node_pointer)
-    print()
-    print("End node is Node Number ->",end_node_pointer)
-    print()
-    solution2 = SimulatedAnnealing.Traversal(graph=graphData,startNodePointer=start_node_pointer,endNodePointer=end_node_pointer)
+    solution2=SA.Traversal(graph=graphData,startNode=0,endNode=4)
+    #solution2 = SimulatedAnnealing.Traversal(graph=graphData,startNodePointer=start_node_pointer,endNodePointer=end_node_pointer)
+    # print()
+    print("Start node is Node Number ->",0)
+    # print()
+    print("End node is Node Number ->",4)
+    # print()
     print("Optimal path is -> ",solution2[0])
-    print()
+    # print()
     print("Global minima/Cost of optimal path is -> ",solution2[1])
-    print()
+    # print()
     print("Number of iterations -> ",solution2[2])
 
 
