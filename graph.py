@@ -4,8 +4,8 @@ import numpy as np
 graph=[]
 
 def getGraphData():
-    filePath="./datasets/five_d.txt"
-    # filePath="./datasets/gr17_d.txt"
+    # filePath="./datasets/five_d.txt"
+    filePath="./datasets/gr17_d.txt"
 
     with open(filePath) as file:
 

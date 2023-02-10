@@ -3,7 +3,6 @@ import random
 def generateNeighbourPath(graph,start,end,pointer,solution):
     loop=0
     path=[]
-    #path.append(start)
 
     generatedNodes=set()
     generatedNodes.add(start)
