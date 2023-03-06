@@ -1,13 +1,13 @@
 from hashlib import new
-import random
 from A_Star.Node import Node
 from graph import getGraphData
 
 
-class A_star_Search():
+class A_star():
     def TraverseGragh(graph,startNodePointer,endNodePointer):
         openList=[]
         closeList=[]
+        childrenList=[]
         path=[]
         startNode=Node(pointer=startNodePointer)
         startNode.hN=graph[startNodePointer][endNodePointer]
@@ -34,12 +34,9 @@ class A_star_Search():
                 path.reverse()
                 #clear openList 
                 openList=[]
-                #getting goal node since it has least f(n)
-                childrenList.sort(key=lambda x: x.fN, reverse=False)
-
+                
                 return path,childrenList[0]
             
-            childrenList=[]
             # find children of current node
             for i in  range(len(graph)):
                     # to make sure we do not add current node 
@@ -48,13 +45,17 @@ class A_star_Search():
                     childNode = Node(pointer=i,parent=currentNode)
                     # calculate and assign f(n) of each child nodes
                     # assigning g(n)
+                    # f(N) = g(N) + h(N)
                     childNode.gN= childNode.parent.gN + graph[childNode.parent.pointer][childNode.pointer]
                     # assigning h(n)
                     childNode.hN= graph[endNodePointer][i]
                     # calculating and assigning f(n)
                     childNode.fN=childNode.gN+childNode.hN
                     childrenList.append(childNode)
-
+            
+            #getting goal node since it has least f(n)
+            childrenList.sort(key=lambda x: x.fN, reverse=False)
+            
             #check if child is already in closedList
             for child in childrenList:
                 for visitedNode in closeList:

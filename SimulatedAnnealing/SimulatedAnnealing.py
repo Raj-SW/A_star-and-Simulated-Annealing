@@ -3,31 +3,27 @@ from SimulatedAnnealing.GenerateRandomPath import generateRandomPath
 from SimulatedAnnealing.CalculateCost import calculateCost
 from SimulatedAnnealing.GenerateNeighbourPath import generateNeighbourPath
 from SimulatedAnnealing.CalculateAcceptanceProbability import calculateAcceptanceProbability
-class SA():
+class SimulatedAnnealing():
     def Traversal(graph,startNode,endNode):
         currentTemp=1000
         FINAL_TEMP=0.1
-        iterations=0
-        alpha=0.1
+        ALPHA=0.1
 
-        visitedNodes=[]
         pointer=1
         cost=0
         newCost=0
-        visitedNodes.append(startNode)
 
         #generate random solution once
         randomSolution=generateRandomPath(graph=graph,end=endNode,start=startNode)
         #generate cost of random solution
-        cost=calculateCost(graph=graph,solution=randomSolution,pointer=pointer,start=startNode)            
+        cost=calculateCost(graph=graph,solution=randomSolution)            
        
         while(currentTemp>FINAL_TEMP):
-            iterations+=1
             if(randomSolution[pointer]==endNode):
                 pointer=1
             #generate neighbour solution
             neighbourSolution=generateNeighbourPath(graph=graph,start=startNode,end=endNode,solution=randomSolution,pointer=pointer)
-            newCost=calculateCost(graph=graph,solution=neighbourSolution,pointer=pointer,start=startNode)
+            newCost=calculateCost(graph=graph,solution=neighbourSolution)
 
             #generate neighbour solution cost
             #compare between two solutions
@@ -48,6 +44,6 @@ class SA():
                     cost=newCost
                     pointer+=1
 
-            currentTemp-=alpha
+            currentTemp-=ALPHA
 
-        return randomSolution,cost,iterations
+        return randomSolution,cost
